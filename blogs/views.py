@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,request
 from .models import Post
 from django.contrib.auth.models import User
 
@@ -24,14 +24,25 @@ def addUser(request):
     password=request.POST['password']
     repassword=request.POST['repassword']
 
-    user=User.objects.create_user(
-        password=password,
-        username=username,
-        email=email
-
-        
-        )
-    user.save()
-    return render(request,'register.html')
-
+     if password==repassword :
+        if User.objects.filter(username=username).exists():
+            
+            print("Username นี้มีคนใช้แล้ว")
+            return redirect('/register')
+        elif User.objects.filter(email=email).exists():
+            
+            print("Email นี้มีคนลงทะเบียนแล้ว")
+            return redirect('/register')
+        else :
+         user=User.objects.create_user(
+         username=username,
+         password=password,
+         email=email,
+         
+         )
+         user.save()
+         return redirect('/')  
+else :
+       return redirect('/')
+   
     
