@@ -8,5 +8,29 @@
 <body>
     <h2 align='center'>กรุณารูดบัตรประชาชน</h2>
     
+    {% for message in messages %}
+        <h2>{{message}}</h2>
+
+    {% endfor %}
+    <form action="login" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="">Username</label>
+            <input type="text" class="form-control" name="username">
+            
+
+        </div>
+        
+        
+        <div class="form-group">
+            <label for="">Password</label>
+            <input type="password" class="form-control" name="password">
+            
+
+        </div>
+       
+        <input type="submit" value="เข้าใช้งาน" class="btn btn-primary"> 
+
+    </form>
 </body>
 </html>
