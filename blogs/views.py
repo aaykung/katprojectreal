@@ -1,7 +1,7 @@
 
 
 from django.shortcuts import render,redirect
-from .models import Post
+from .models import Post,Maindata
 from django.contrib.auth.models import User,auth
 from django.contrib import messages
 # Create your views here.
@@ -20,6 +20,12 @@ def interface3(request):
     #Query Data From Model
     data=Post.objects.all()
     return render(request,'page3querry.html',{'posts':data})
+
+def interface4(request):
+    #Query Data From Model
+    data=Maindata.objects.all()
+    return render(request,'page4maindata.html',{'mains':data})
+
 
 def addUser(request):
     
