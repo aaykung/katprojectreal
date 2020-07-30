@@ -30,7 +30,7 @@ def interface4(request):
 def addUser(request):
     
     username=request.POST['username']
-    email=request.POST['email']
+    
     password=request.POST['password']
     repassword=request.POST['repassword']
 
@@ -38,14 +38,12 @@ def addUser(request):
         if User.objects.filter(username=username).exists():
             messages.info(request,'Username นี้มีคนใช้แล้ว')
             return redirect('/register')
-        elif User.objects.filter(email=email).exists():
-            messages.info(request,'Email นี้มีคนใช้แล้ว')
-            return redirect('/register')
+       
         else :
             user=User.objects.create_user(
                 username=username,
                 password=password,
-                email=email
+                
 
             )
             user.save()
